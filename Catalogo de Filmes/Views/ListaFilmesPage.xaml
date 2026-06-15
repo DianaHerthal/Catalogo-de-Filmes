@@ -1,0 +1,43 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Catalogo_de_Filmes.ViewModels"
+             xmlns:models="clr-namespace:Catalogo_de_Filmes.Models"
+             x:Class="Catalogo_de_Filmes.Views.ListaFilmesPage"
+             Title="Filmes por Gênero">
+
+    <CollectionView ItemsSource="{Binding Filmes}" SelectionMode="None" Margin="15">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:Filme">
+
+                <Frame Margin="0,0,0,15" Padding="0" CornerRadius="12" HasShadow="True" BorderColor="Transparent">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ListaFilmes}}, Path=IrParaDetalhesCommand}"
+                            CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
+
+                    <Grid ColumnDefinitions="120, *">
+                        <Image Grid.Column="0" 
+       Source="{Binding ImagemUrl}" 
+       HeightRequest="180" 
+       WidthRequest="120"
+       Aspect="AspectFill" 
+       BackgroundColor="Gray"
+       HorizontalOptions="Start" />
+
+                        <VerticalStackLayout Grid.Column="1" Padding="15" Spacing="10" VerticalOptions="Center">
+                            <Label Text="{Binding Titulo}" FontAttributes="Bold" FontSize="18"/>
+
+                            <Border StrokeShape="RoundRectangle 5" BackgroundColor="#2B2B2B" HorizontalOptions="Start" Padding="8,4">
+                                <Label Text="{Binding Genero}" TextColor="White" FontSize="12" FontAttributes="Bold"/>
+                            </Border>
+
+                            <Label Text="{Binding Sinopse}" FontSize="14" MaxLines="3" LineBreakMode="TailTruncation" TextColor="Gray"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

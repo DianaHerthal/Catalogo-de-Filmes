@@ -1,0 +1,20 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Catalogo_de_Filmes.Views.DetalhesFilmePage"
+             Title="Detalhes">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Image Source="{Binding Filme.ImagemUrl}" HeightRequest="350" Aspect="AspectFit"/>
+
+            <Label Text="{Binding Filme.Titulo}" FontSize="26" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+            <Label Text="{Binding Filme.Genero}" FontSize="16" FontAttributes="Italic" HorizontalOptions="Center" TextColor="Gray"/>
+
+            <BoxView HeightRequest="1" Color="LightGray" Margin="0,10"/>
+
+            <Label Text="Sinopse" FontAttributes="Bold" FontSize="20"/>
+            <Label Text="{Binding Filme.Sinopse}" FontSize="16" LineHeight="1.4"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

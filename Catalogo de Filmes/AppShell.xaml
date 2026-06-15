@@ -3,12 +3,13 @@
     x:Class="Catalogo_de_Filmes.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Catalogo_de_Filmes"
-    Title="Catalogo_de_Filmes">
+    xmlns:local="clr-namespace:Catalogo_de_Filmes.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Title="Catálogo de Filmes">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Filmes"
+        ContentTemplate="{DataTemplate local:ListaFilmesPage}"
+        Route="ListaFilmesPage" />
 
 </Shell>

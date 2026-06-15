@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using Catalogo_de_Filmes.ViewModels;
+using Catalogo_de_Filmes.Views;
 
 namespace Catalogo_de_Filmes
 {
@@ -16,10 +18,20 @@ namespace Catalogo_de_Filmes
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
+
+            builder.Services.AddTransient<ListaFilmes>();
+            builder.Services.AddTransient<DetalhesFilmes>();
+
+            builder.Services.AddTransient<ListaFilmesPage>();
+            builder.Services.AddTransient<DetalhesFilmesPage>();
 
             return builder.Build();
         }
+    }
+
+    internal class DetalhesFilmesPage
+    {
     }
 }
