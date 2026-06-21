@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Catalogo_de_Filmes.ViewModels"
+             x:Class="Catalogo_de_Filmes.Views.GerenciarGenerosPage"
+             Title="Gerenciar Gêneros">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="Adicionar Novo Gênero" FontAttributes="Bold" FontSize="18" TextColor="#0052cc"/>
+
+        <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+            <Entry Grid.Column="0" Text="{Binding NovoNomeGenero}" Placeholder="Ex: Ficção Científica" BackgroundColor="White" TextColor="Black"/>
+            <Button Grid.Column="1" Text="Salvar" Command="{Binding AdicionarGeneroCommand}" BackgroundColor="#28a745" TextColor="White"/>
+        </Grid>
+
+        <BoxView HeightRequest="1" Color="LightGray" Margin="0,10"/>
+
+        <Label Text="Gêneros Cadastrados" FontAttributes="Bold" FontSize="18"/>
+
+        <CollectionView ItemsSource="{Binding Generos}" HeightRequest="400">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="0,5" HasShadow="False" BorderColor="LightGray">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <Label Grid.Column="0" Text="{Binding Nome}" VerticalOptions="Center" FontSize="16" TextColor="Black"/>
+
+                            <Button Grid.Column="1" Text="X" WidthRequest="40" HeightRequest="40" BackgroundColor="#dc3545" TextColor="White"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:GerenciarGenerosViewModel}}, Path=RemoverGeneroCommand}"
+                                    CommandParameter="{Binding .}"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

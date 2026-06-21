@@ -1,43 +1,65 @@
-﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:Catalogo_de_Filmes.ViewModels"
              xmlns:models="clr-namespace:Catalogo_de_Filmes.Models"
+             xmlns:viewmodels="clr-namespace:Catalogo_de_Filmes.ViewModels"
              x:Class="Catalogo_de_Filmes.Views.ListaFilmesPage"
-             Title="Filmes por Gênero">
+             Title="Meu Catálogo Real">
 
-    <CollectionView ItemsSource="{Binding Filmes}" SelectionMode="None" Margin="15">
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:Filme">
+    <Grid RowDefinitions="Auto, *">
 
-                <Frame Margin="0,0,0,15" Padding="0" CornerRadius="12" HasShadow="True" BorderColor="Transparent">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer 
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ListaFilmes}}, Path=IrParaDetalhesCommand}"
-                            CommandParameter="{Binding .}"/>
-                    </Frame.GestureRecognizers>
+        <Grid Grid.Row="0" ColumnDefinitions="*, *" ColumnSpacing="10" Margin="15,15,15,5">
 
-                    <Grid ColumnDefinitions="120, *">
-                        <Image Grid.Column="0" 
-       Source="{Binding ImagemUrl}" 
-       HeightRequest="180" 
-       WidthRequest="120"
-       Aspect="AspectFill" 
-       BackgroundColor="Gray"
-       HorizontalOptions="Start" />
+            <Button Grid.Column="0" 
+                    Text="+ Novo Filme" 
+                    Command="{Binding IrParaCadastroCommand}" 
+                    BackgroundColor="#0052cc" 
+                    TextColor="White"
+                    CornerRadius="8"
+                    FontAttributes="Bold"
+                    HeightRequest="45"/>
 
-                        <VerticalStackLayout Grid.Column="1" Padding="15" Spacing="10" VerticalOptions="Center">
-                            <Label Text="{Binding Titulo}" FontAttributes="Bold" FontSize="18"/>
+            <Button Grid.Column="1" 
+                    Text="⚙️ Gerenciar Gêneros" 
+                    Command="{Binding IrParaGenerosCommand}" 
+                    BackgroundColor="#6c757d" 
+                    TextColor="White"
+                    CornerRadius="8"
+                    FontAttributes="Bold"
+                    HeightRequest="45"/>
+        </Grid>
 
-                            <Border StrokeShape="RoundRectangle 5" BackgroundColor="#2B2B2B" HorizontalOptions="Start" Padding="8,4">
-                                <Label Text="{Binding Genero}" TextColor="White" FontSize="12" FontAttributes="Bold"/>
-                            </Border>
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Filmes}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Filme">
+                    <Frame Margin="15,5,15,10" Padding="0" CornerRadius="10" HasShadow="True">
+                        <Grid ColumnDefinitions="120, *, Auto">
 
-                            <Label Text="{Binding Sinopse}" FontSize="14" MaxLines="3" LineBreakMode="TailTruncation" TextColor="Gray"/>
-                        </VerticalStackLayout>
-                    </Grid>
-                </Frame>
+                            <Image Grid.Column="0" Source="{Binding ImagemUrl}" HeightRequest="180" Aspect="AspectFill" />
 
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                            <VerticalStackLayout Grid.Column="1" Margin="15">
+                                <Label Text="{Binding Titulo}" FontAttributes="Bold" FontSize="18" TextColor="#333333" />
+                                <Label Text="{Binding Genero}" TextColor="#888888" FontSize="14" />
+                                <Label Text="{Binding Sinopse}" MaxLines="3" LineBreakMode="TailTruncation" FontSize="14" Margin="0,5,0,0"/>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="2" VerticalOptions="Center" Spacing="10" Margin="0,0,15,0">
+                                <Button Text="Ver" 
+                                        BackgroundColor="#28a745"
+                                        TextColor="White"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ListaFilmes}}, Path=IrParaDetalhesCommand}"
+                                        CommandParameter="{Binding .}" />
+
+                                <Button Text="Apagar" 
+                                        BackgroundColor="#dc3545" 
+                                        TextColor="White"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:ListaFilmes}}, Path=RemoverFilmeCommand}"
+                                        CommandParameter="{Binding .}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

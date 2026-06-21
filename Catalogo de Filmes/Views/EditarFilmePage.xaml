@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Catalogo_de_Filmes.Views.EditarFilmePage"
+             Title="Modificar Filme">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Alterar Dados" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#28a745"/>
+
+            <Label Text="Título" FontAttributes="Bold" />
+            <Entry Text="{Binding Filme.Titulo}" BackgroundColor="White" TextColor="Black"/>
+
+            <Label Text="Gênero" FontAttributes="Bold" />
+            <Entry Text="{Binding Filme.Genero}" BackgroundColor="White" TextColor="Black"/>
+
+            <Label Text="URL da Imagem" FontAttributes="Bold" />
+            <Entry Text="{Binding Filme.ImagemUrl}" BackgroundColor="White" TextColor="Black"/>
+
+            <Label Text="Sinopse" FontAttributes="Bold" />
+            <Editor Text="{Binding Filme.Sinopse}" HeightRequest="120" BackgroundColor="White" TextColor="Black"/>
+
+            <Button Text="Confirmar Alterações" 
+                    Command="{Binding SalvarEdicaoCommand}" 
+                    BackgroundColor="#28a745" 
+                    TextColor="White" 
+                    FontAttributes="Bold"
+                    Margin="0,20,0,0"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

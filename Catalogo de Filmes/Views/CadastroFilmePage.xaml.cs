@@ -1,11 +1,10 @@
 ﻿using Catalogo_de_Filmes.ViewModels;
-using Microsoft.Maui.Controls;
 
 namespace Catalogo_de_Filmes.Views;
 
-public partial class DetalhesFilmesPage : ContentPage
+public partial class CadastroFilmePage : ContentPage
 {
-    public DetalhesFilmesPage(DetalhesFilmes viewModel)
+    public CadastroFilmePage(ListaFilmes viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;

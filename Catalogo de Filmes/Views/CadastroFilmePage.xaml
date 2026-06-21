@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Catalogo_de_Filmes.ViewModels"
+             x:Class="Catalogo_de_Filmes.Views.CadastroFilmePage"
+             Title="Cadastrar Novo Filme">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Cadastrar Novo Filme" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#0052cc" Margin="0,0,0,10"/>
+
+            <Label Text="Título do Filme" FontAttributes="Bold" FontSize="16" />
+            <Entry Text="{Binding NovoFilme.Titulo}" Placeholder="Ex: Batman" BackgroundColor="White" TextColor="Black" />
+
+            <Label Text="Gênero" FontAttributes="Bold" FontSize="16" />
+            <Picker Title="Selecione um Gênero..." 
+                    ItemsSource="{Binding ListaDeGeneros}" 
+                    ItemDisplayBinding="{Binding Nome}" 
+                    SelectedItem="{Binding GeneroSelecionado}" 
+                    BackgroundColor="White" 
+                    TextColor="Black" />
+
+            <Label Text="Link da Imagem de Capa (URL)" FontAttributes="Bold" FontSize="16" />
+            <Entry Text="{Binding NovoFilme.ImagemUrl}" Placeholder="https://linkdaimagem.com/foto.jpg" BackgroundColor="White" TextColor="Black" />
+
+            <Label Text="Sinopse" FontAttributes="Bold" FontSize="16" />
+            <Editor Text="{Binding NovoFilme.Sinopse}" Placeholder="Digite a sinopse completa aqui..." HeightRequest="120" BackgroundColor="White" TextColor="Black"/>
+
+            <Button Text="Salvar Filme" 
+                    Command="{Binding SalvarFilmeCommand}" 
+                    BackgroundColor="#0052cc" 
+                    TextColor="White" 
+                    FontAttributes="Bold"
+                    Margin="0,20,0,0"
+                    CornerRadius="8"
+                    HeightRequest="45"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
