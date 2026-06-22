@@ -4,24 +4,18 @@ namespace Catalogo_de_Filmes.Views;
 
 public partial class ListaFilmesPage : ContentPage
 {
-    private readonly ListaFilmes _viewModel;
-
     public ListaFilmesPage(ListaFilmes viewModel)
     {
         InitializeComponent();
-        _viewModel = viewModel;
-        BindingContext = _viewModel;
+        BindingContext = viewModel;
     }
-
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-
-        if (_viewModel != null)
+        if (BindingContext is ListaFilmes viewModel)
         {
-            
-            await _viewModel.CarregarFilmesAsync();
+            await viewModel.CarregarFilmesAsync();
         }
     }
 }

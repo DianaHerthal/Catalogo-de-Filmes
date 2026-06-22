@@ -9,9 +9,7 @@ public class FilmeRepositoryMongo : IFilmeRepository
 
     public FilmeRepositoryMongo()
     {
-       
-        var stringConexao = "mongodb://localhost:27017";
-
+        var stringConexao = "mongodb+srv://sabrinatainadossantos_db_user:binadopai@cluster0.zcskgxg.mongodb.net/?appName=Cluster0";
         var cliente = new MongoClient(stringConexao);
         var banco = cliente.GetDatabase("CatalogoFilmesDB");
         _colecao = banco.GetCollection<Filme>("Filmes");
@@ -24,6 +22,7 @@ public class FilmeRepositoryMongo : IFilmeRepository
 
     public async Task AddFilmeAsync(Filme filme)
     {
+        
         await _colecao.InsertOneAsync(filme);
     }
 

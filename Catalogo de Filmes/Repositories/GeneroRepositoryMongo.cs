@@ -9,7 +9,7 @@ public class GeneroRepositoryMongo : IGeneroRepository
 
     public GeneroRepositoryMongo()
     {
-        var client = new MongoClient("mongodb://localhost:27017");
+        var client = new MongoClient("mongodb+srv://sabrinatainadossantos_db_user:binadopai@cluster0.zcskgxg.mongodb.net/?appName=Cluster0");
         var database = client.GetDatabase("CatalogoFilmesDB");
         _collection = database.GetCollection<Genero>("Generos");
     }
